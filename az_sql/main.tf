@@ -22,7 +22,7 @@ resource "azurerm_mssql_server" "db" {
   resource_group_name          = var.resource_group
   location                     = var.region
   version                      = "12.0"
-  administrator_login          = random_password.username.result
+  administrator_login          = random_string.username.result
   administrator_login_password = random_password.password.result
 
   tags = module.tags.tags
