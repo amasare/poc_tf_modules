@@ -41,6 +41,15 @@ resource "azurerm_container_app" "app" {
   }
   tags = module.tags.tags
 
+  ingress {
+    allow_insecure_connections = true
+    external_enabled           = true
+    target_port                = 5002
+    traffic_weight {
+      percentage = 100
+    }
+  }
+
   template {
     container {
       name   = var.container_name
