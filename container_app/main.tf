@@ -1,8 +1,8 @@
 module "tags" {
-    source = "../standard_tags"
-    application = var.app_name
-    team_name = var.team_name
-    environment = var.environment
+  source = "../standard_tags"
+  application = var.app_name
+  team_name = var.team_name
+  environment = var.environment
 }
 
 # This could also be a mandatory parameter
@@ -30,6 +30,15 @@ resource "azurerm_container_app" "app" {
   container_app_environment_id = azurerm_container_app_environment.app.id
   resource_group_name          = var.resource_group
   revision_mode                = "Single"
+  registry {
+    server               = "ghcr.io"
+    username             = "amasare"
+    password_secret_name = "registry_token"
+  }
+  secret {
+    name  = "registry_token"
+    value = var.image_registry_token
+  }
   tags = module.tags.tags
 
   template {

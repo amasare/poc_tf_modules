@@ -57,3 +57,8 @@ variable "environment" {
   type = string
   description = "Deployment Environment"
 }
+
+variable "image_registry_token" {
+  type = string
+  description = "Image registry token associated with user for registry access"
+}
