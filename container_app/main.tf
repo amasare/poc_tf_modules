@@ -33,10 +33,10 @@ resource "azurerm_container_app" "app" {
   registry {
     server               = "ghcr.io"
     username             = "amasare"
-    password_secret_name = "registry_token"
+    password_secret_name = "registry-token"
   }
   secret {
-    name  = "registry_token"
+    name  = "registry-token"
     value = var.image_registry_token
   }
   tags = module.tags.tags
